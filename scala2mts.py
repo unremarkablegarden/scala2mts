@@ -366,7 +366,7 @@ print()
 
 # check if output_file exists
 if os.path.isfile(output_file):
-  print("Output file " + output_file + " already exists. Overwrite? (y/n)")
+  print("Output file " + output_file + " already exists. Overwrite? (y/n) [enter]")
   overwrite = input()
   if overwrite == "y":
     # open output_file in binary write mode
