@@ -5,7 +5,7 @@ Works with Scala files defined in just intonation (ratios) or in cents. Works wi
 
 I made this because I just couldn't find a tool that does it online any more, and because the SysEx dumps from Scala are the wrong formats to be able to specify a program memory slot (Yes, I tried them all).
 
-# 𝕌𝕤𝕒𝕘𝕖
+# 𝖀𝖘𝖆𝖌𝖊
 
 > python scala2mts.py -h
 
@@ -39,7 +39,7 @@ y
 Wrote sysex to grady-sisiutl.syx
 ```
 
-# ℝ𝕖𝕢𝕦𝕚𝕣𝕖𝕞𝕖𝕟𝕥𝕤
+# 𝕽𝖊𝖖𝖚𝖎𝖗𝖊𝖒𝖊𝖓𝖙𝖘
 
 Python 3
 
