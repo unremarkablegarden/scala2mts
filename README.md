@@ -3,7 +3,7 @@ Python script to convert Scala tuning files to MIDI Tuning Standard SysEx (for u
 
 Works with Scala files defined in just intonation (ratios) or in cents. Works with non-2/1 octave tunings and non-octave-repeating tunings.
 
-# Usage
+# 𝕌𝕤𝕒𝕘𝕖
 
 > python scala2mts.py -h
 
@@ -37,10 +37,10 @@ y
 Wrote sysex to grady-sisiutl.syx
 ```
 
-# Requirements
+# ℝ𝕖𝕢𝕦𝕚𝕣𝕖𝕞𝕖𝕟𝕥𝕤
 
 Python 3
 
 —
 
-*RIP http://www.microtonalsoftware.com/scl-scala-to-mts-converter.html*
+*𝕽𝕴𝕻 𝖍𝖙𝖙𝖕://𝖜𝖜𝖜.𝖒𝖎𝖈𝖗𝖔𝖙𝖔𝖓𝖆𝖑𝖘𝖔𝖋𝖙𝖜𝖆𝖗𝖊.𝖈𝖔𝖒/𝖘𝖈𝖑-𝖘𝖈𝖆𝖑𝖆-𝖙𝖔-𝖒𝖙𝖘-𝖈𝖔𝖓𝖛𝖊𝖗𝖙𝖊𝖗.𝖍𝖙𝖒𝖑*
