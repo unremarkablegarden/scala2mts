@@ -1,8 +1,8 @@
 # 𝕾𝖈𝖆𝖑𝖆 𝟐 𝕸𝕿𝕾
 
-Python script to convert Scala tuning files to MIDI Tuning Standard SysEx (for use with hardware synths and sequencers, like the Cirklon and Prophet)
+Python script to convert Scala tuning files to MIDI Tuning Standard SysEx (for use with hardware synths and sequencers, like the Cirklon and Prophet).
 
-Works with Scala files defined in just intonation (ratios) or in cents. Works with non-2/1 octave tunings and non-octave-repeating tunings.
+Works with Scala files defined in just intonation (ratios) or in cents. Works with non-2/1 octave tunings and non-octave-repeating tunings, for the real headz.
 
 I made this because I just couldn't find a tool that does it online any more, and because the SysEx dumps from Scala are the wrong formats to be able to specify a program memory slot (Yes, I tried them all).
 
