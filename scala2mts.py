@@ -24,6 +24,7 @@ import getopt
 import math
 import functools
 import operator
+import textwrap
 
 # define defaults
 input_file = None
@@ -32,8 +33,6 @@ program_number = 1
 
 base_note = 69
 base_freq = 440
-# base_note = 60
-# base_freq = 432
 # base_note = 48
 # base_freq = 261.625565
 
@@ -199,8 +198,7 @@ def num_to_hex(num):
   hex = format(num, '02x')
   return hex
 
-# print(num_to_hex(69))
-# outputs 45
+# print(num_to_hex(69)) # outputs 45
 
 # calculate hz of all notes in standard tuning
 # function to calculate freq of note
@@ -261,7 +259,6 @@ def hz_to_freq_data(freq):
   msb_hex = str(msb_hex)
   lsb_hex = str(lsb_hex)
   
-  # space at the end added in list join later
   # return semitone_hex, msb_hex, lsb_hex
   return semitone_hex + " " + msb_hex + " " + lsb_hex
   
@@ -275,22 +272,22 @@ for freq in scala_freqs:
 """
 The format of the SysEx dump is as follows:
 
-header = F0 7E 00 08 01 tt tn 
-tuning_data = <xx yy zz> * 128
-footer = ck F7
+    header = F0 7E 00 08 01 tt tn 
+    tuning_data = <xx yy zz> * 128
+    footer = ck F7
 
 where
 
-F0 7E = universal non-realtime SysEx header
-00    = target device ID
-08    = sub-ID #1 (MIDI tuning standard)
-01    = sub-ID #2 (bulk dump reply)
-tt    = tuning program number 0 to 127 in hexadecimal
-tn    = tuning name (16 ASCII characters)
-<xx yy zz>    = frequency data for one note,
-                repeated 128 times
-ck    = checksum (XOR of 7E 00 01 tt <388 bytes>)
-F7    = end of SysEx message
+    F0 7E = universal non-realtime SysEx header
+    00    = target device ID
+    08    = sub-ID #1 (MIDI tuning standard)
+    01    = sub-ID #2 (bulk dump reply)
+    tt    = tuning program number 0 to 127 in hexadecimal
+    tn    = tuning name (16 ASCII characters)
+    <xx yy zz>    = frequency data for one note,
+                    repeated 128 times, one for each MIDI note number
+    ck    = checksum (XOR of 7E 00 01 tt <388 bytes>)
+    F7    = end of SysEx message
 """
 
 # convert program number to hex
@@ -326,25 +323,41 @@ Dump messages the checksum field is calculated by successively XOR'ing the bytes
 to_checksum = header[6:] + ''.join(data).replace(" ", "")
 # XOR of to_checksum
 checksum = functools.reduce(operator.xor, (int(to_checksum[i:i+2], 16) for i in range(0, len(to_checksum), 2)))
-
+# AND with 7F
+checksum = checksum & 0x7F
 # convert checksum to hex
 checksum = num_to_hex(checksum)
 
 
-print('base_note' + ': ' + str(base_note))
-print('base_freq' + ': ' + str(base_freq))
-print('notes_per_octave' + ': ' + str(notes_per_octave))
-print('scala_ratios' + ': ' + str(scala_ratios))
-print('——————————')
+print('Base note' + ': ' + str(base_note))
+print('Base freq' + ': ' + str(base_freq))
+print('Notes per octave' + ': ' + str(notes_per_octave))
+print('————————————————————')
+print('Intervals')
+# print items in scala_cents with index
+for i, item in enumerate(scala_cents):
+  item = round(item, 3)
+  print(str(i+1) + " = " + str(item))
+print('————————————————————')
 
 
 # sysex
 sysex = header + " " + data + " " + checksum + " " + footer
 
-print(sysex)
-
 # remove spaces from sysex
 sysex = sysex.replace(" ", "")
+
+# sysex_print = add space every four chars
+sysex_print = ' '.join(sysex[i:i+4] for i in range(0, len(sysex), 4))
+# break sys ex into lines of 35 chars
+sysex_print = textwrap.wrap(sysex_print, 70)
+
+# print sysex_print
+for line in sysex_print:
+  print(line)
+  
+print('————————————————————')
+
 
 # convert sysex to bytes
 sysex = bytes.fromhex(sysex)
