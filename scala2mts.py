@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # Path: scala2mts.py
 # by Olle Holmberg, 2022
+# v0.0.1 - 2022-10-21
 
 """
 Convert Scala files to SysEx files for use with the Prophet rev2 and Cirklon.
