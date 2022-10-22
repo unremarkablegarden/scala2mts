@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 # Path: scala2mts.py
+# 
 # by Olle Holmberg, 2022
-# v0.0.1 - 2022-10-22
+# 
+# v0.0.2 - 2022-10-22
+# 
+# Reference:
+# https://musescore.org/sites/musescore.org/files/2018-06/midituning.pdf
 
 """
 Convert Scala files to SysEx files for use with the Prophet rev2 and Cirklon.
@@ -202,15 +207,15 @@ def num_to_hex(num):
 
 # calculate hz of all notes in standard tuning
 # function to calculate freq of note
-def note_to_hz_std(note):
-  freq = 440 * 2**((note - 69)/12)
-  return freq
+# def note_to_hz_std(note):
+#   freq = 440 * 2**((note - 69)/12)
+#   return freq
 
 # calculate freqs of all notes in standard tuning
-std_freqs = []
-for i in range(0, 128):
-  freq = note_to_hz_std(i)
-  std_freqs.append(freq)
+# std_freqs = []
+# for i in range(0, 128):
+#   freq = note_to_hz_std(i)
+#   std_freqs.append(freq)
   
 """
 Frequency data format (all bytes in hex)
@@ -349,7 +354,7 @@ sysex = sysex.replace(" ", "")
 
 # sysex_print = add space every four chars
 sysex_print = ' '.join(sysex[i:i+4] for i in range(0, len(sysex), 4))
-# break sys ex into lines of 35 chars
+# break sys ex into lines of 70 chars
 sysex_print = textwrap.wrap(sysex_print, 70)
 
 # print sysex_print
@@ -364,23 +369,21 @@ sysex = bytes.fromhex(sysex)
 
 print()
 
-# check if output_file exists
-if os.path.isfile(output_file):
-  print("Output file " + output_file + " already exists. Overwrite? (y/n) [enter]")
-  overwrite = input()
-  if overwrite == "y":
-    # open output_file in binary write mode
-    f = open(output_file, "wb")
-    # write sysex to output_file
-    f.write(sysex)
-    f.close()
-    print("Wrote sysex to " + output_file)
-  else:
-    print("Aborting.")
-else:
+def write_file(sysex):
   # open output_file in binary write mode
   f = open(output_file, "wb")
   # write sysex to output_file
   f.write(sysex)
   f.close()
   print("Wrote sysex to " + output_file)
+
+# check if output_file exists
+if os.path.isfile(output_file):
+  print("Output file " + output_file + " already exists. Overwrite? (y/n) [enter]")
+  overwrite = input()
+  if overwrite == "y":
+    write_file(sysex)
+  else:
+    print("Aborting.")
+else:
+  write_file(sysex)
