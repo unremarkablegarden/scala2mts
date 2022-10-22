@@ -84,8 +84,8 @@ scala_name = scala_name[2:]
 # remove the .scl extension
 scala_name = scala_name.replace(".scl", "")
 # replace dashes and underlines with spaces
-scala_name = scala_name.replace("-", " ")
-scala_name = scala_name.replace("_", " ")
+# scala_name = scala_name.replace("-", " ")
+# scala_name = scala_name.replace("_", " ")
 
 
 # scala_description = the first scala_lines line that doesn't start with !
@@ -336,7 +336,7 @@ print('————————————————————')
 print('Intervals')
 # print items in scala_cents with index
 for i, item in enumerate(scala_cents):
-  item = round(item, 3)
+  item = round(float(item), 3)
   print(str(i+1) + " = " + str(item))
 print('————————————————————')
 
