@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # Path: scala2mts.py
-# 
-# by Olle Holmberg, 2022
-# 
+# Author: Olle Holmberg, 2022
+# License: GPL v3
 # v0.0.2 - 2022-10-22
 # 
-# Reference:
-# https://musescore.org/sites/musescore.org/files/2018-06/midituning.pdf
+# https://github.com/unremarkablegarden/scala2mts
+# 
+# Reference: https://musescore.org/sites/musescore.org/files/2018-06/midituning.pdf
 
 """
 Convert Scala files to SysEx files for use with the Prophet rev2 and Cirklon.
