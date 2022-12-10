@@ -6,6 +6,8 @@ Works with Scala files defined in just intonation (ratios) or in cents. Works wi
 
 I made this because I just couldn't find a tool that does it online any more, and because the SysEx dumps from Scala are the wrong formats to be able to specify a program memory slot (Yes, I tried them all).
 
+Shoutouts to Kraig Grady for making my favorite tunings (like Sisiutl), to I Nyoman Mariyana for showing me his ancient Balinese gamelan tunings and being the reason to make this script, and to Werner Durand for teaching me microtonality.
+
 # 𝖀𝖘𝖆𝖌𝖊
 
 > python scala2mts.py -h
