@@ -2,7 +2,7 @@
 # Path: scala2mts.py
 # Author: Olle Holmberg, 2022
 # License: GPL v3
-# v0.0.2 - 2022-10-22
+# v0.0.3 - 2022-10-22
 # 
 # https://github.com/unremarkablegarden/scala2mts
 # 
@@ -19,7 +19,7 @@ Arguments:
 -o output file: the SysEx file to create (default: the input file name with .syx extension)
 -n base_note: the base note as a number (default = 69 = A4)
 -f base_freq: the base frequency of the Scala file (default = 440.000)
--p program_number: which memory slot to store the tuning in the synth (default = 1 = first)
+-p program_number: which memory slot to store the tuning in the synth (default is 0 = first)
 -h help: show this help message
 """
 
@@ -34,7 +34,7 @@ import textwrap
 # define defaults
 input_file = None
 output_file = None
-program_number = 1
+program_number = 0
 
 base_note = 69
 base_freq = 440
@@ -60,8 +60,8 @@ for o, a in opts:
 	elif o in ("-f", "--base_freq"):
 		base_freq = float(a)
 	elif o in ("-p", "--program_number"):
-    # first is actually 0, but we want to start at 1
-		program_number = int(a) - 1
+    # first is actually 0
+		program_number = int(a)
 	else:
 		assert False, "unhandled option"
 		
