@@ -234,15 +234,24 @@ def convert_scl_to_syx(input_file, output_file, base_note, base_freq, program_nu
 		scala_notes_are_ratios = True
 		
 	scala_cents = []
-	if scala_notes_are_ratios:
-		# convert ratios to cents
-		for note in scala_notes:
-			ratio = ratio_to_float(note)
-			cents = ratio_to_cents(ratio)
-			scala_cents.append(cents)
-	else:
-		# put scala_notes in scala_cents
-		scala_cents = scala_notes
+	for i in range(len(scala_notes)):
+			if "/" in scala_notes[i]:
+					ratio = ratio_to_float(scala_notes[i])
+					cents = ratio_to_cents(ratio)
+					scala_cents.append(cents) 
+			else: 
+					scala_cents.append(scala_notes[i])
+	
+	# OLD
+	# if scala_notes_are_ratios:
+	# 	# convert ratios to cents
+	# 	for note in scala_notes:
+	# 		ratio = ratio_to_float(note)
+	# 		cents = ratio_to_cents(ratio)
+	# 		scala_cents.append(cents)
+	# else:
+	# 	# put scala_notes in scala_cents
+	# 	scala_cents = scala_notes
 
 
 	# function to calculate ratio of cents
