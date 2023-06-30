@@ -8,7 +8,15 @@ I made this because I just couldn't find a tool that does it online any more, an
 
 Shoutouts to Kraig Grady for making my favorite tunings (like Sisiutl), to I Nyoman Mariyana for showing me his ancient Balinese gamelan tunings and being the reason to make this script, and to Werner Durand for teaching me microtonality.
 
-# 𝖀𝖘𝖆𝖌𝖊
+# 𝖀𝖘𝖆𝖌𝖊 (binaries)
+
+Currently I've only compiled the GUI version for Apple Silicon Macs.
+
+You can compile it for your platform with Python by installing pyinstaller with pip, and then running:
+
+> pyinstaller --onefile scala2mts-gui.py
+
+# 𝖀𝖘𝖆𝖌𝖊 (command line)
 
 > python scala2mts.py -h
 
