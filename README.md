@@ -72,10 +72,9 @@ Wrote sysex to grady-sisiutl.syx
 
 # 𝕽𝖊𝖖𝖚𝖎𝖗𝖊𝖒𝖊𝖓𝖙𝖘
 
-Python 3
+• Python 3
+• tkinter for GUI
 
 —
 
-I've tested this to work on a Prophet rev2, but I haven't tested on Cirklon yet.
-
-🪦 *𝕽𝕴𝕻 𝖍𝖙𝖙𝖕://𝖜𝖜𝖜.𝖒𝖎𝖈𝖗𝖔𝖙𝖔𝖓𝖆𝖑𝖘𝖔𝖋𝖙𝖜𝖆𝖗𝖊.𝖈𝖔𝖒/𝖘𝖈𝖑-𝖘𝖈𝖆𝖑𝖆-𝖙𝖔-𝖒𝖙𝖘-𝖈𝖔𝖓𝖛𝖊𝖗𝖙𝖊𝖗.𝖍𝖙𝖒𝖑* 🪦
+🪦 *RIP https://www.microtonalsoftware.com/scl-scala-to-mts-converter.html* 🪦
