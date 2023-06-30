@@ -28,6 +28,7 @@ This will give you the macOS error message:
 * Open System Settings > Privacy & Security
 * Scroll down to where you see `"scala2mts" was blocked from use because it is not from an identified developer.`
 * Click the button `Allow Anyway`
+* In the terminal again: `./scala2ms`
 
 
 # 𝖀𝖘𝖆𝖌𝖊 (compiling for Linux, Windows, etc.)
