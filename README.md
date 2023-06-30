@@ -11,7 +11,7 @@ I made this because I just couldn't find a tool that does it online any more, an
 Shoutouts to *Kraig Grady* for making my favorite tunings (like **Sisiutl**), to *I Nyoman Mariyana* for showing me his ancient Balinese gamelan tunings and being the reason to make this script, and to *Werner Durand* for deepening my knowledge and love for microtonality.
 
 
-# 𝖀𝖘𝖆𝖌𝖊 (binaries)
+# 𝖀𝖘𝖆𝖌𝖊 (binary)
 
 Currently I've only compiled the GUI version for Apple Silicon Macs. Run it from the terminal after making it executable first.
 
@@ -28,7 +28,7 @@ This will give you the macOS error message:
 * Open System Settings > Privacy & Security
 * Scroll down to where you see `"scala2mts" was blocked from use because it is not from an identified developer.`
 * Click the button `Allow Anyway`
-* In the terminal again: `./scala2ms`
+* In the terminal again: `./scala2mts`
 
 
 # 𝖀𝖘𝖆𝖌𝖊 (compiling for Linux, Windows, etc.)
