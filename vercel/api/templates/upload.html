@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Scala2MTS</title>
+	</head>
+	<body>
+		<div class="wrapper">
+		<h1>Scala2MTS</h1>
+		<p>
+			A Python web app to convert Scala tuning files to MIDI Tuning Standard SysEx (for use with hardware synths and sequencers, like the Sequentix Cirklon and Sequential Prophet rev2).
+		</p>
+		<p>
+			Works with Scala files defined in just intonation (ratios) or in cents. Works with non-2/1 octave tunings and non-octave-repeating tunings.
+		</p>
+		
+		<form action="/" method="POST" enctype="multipart/form-data">
+			<input type="file" name="file" accept=".scl" required><br/><br/>
+			<label>Root note (MIDI note number)</label>
+			<input type="number" name="base_note" placeholder="69" value="69"><br/>
+			<label>Base frequency (Hz)<br/></label>
+			<input type="number" name="base_freq" placeholder="440" value="440"><br/>
+			<label>Tuning program number<br/>(device memory)</label>
+			<input type="number" name="program_number" placeholder="1" value="1"><br/><br/>
+			
+			<!-- <button class="button-56" role="button">Button 56</button> -->
+			<button class="button-56" role="button" type="submit">Convert and Download</button>
+		</form>
+		<p class="sm">by Olle Holmberg | 
+		<a href="mailto:olle@unremarkablegarden.com" target="_blank">E-mail</a> | 
+		<a href="https://github.com/unremarkablegarden/scala2mts" target="_blank">GitHub</a> | 
+		<a href="https://unremarkablegarden.com/" target="_blank">Work</a>
+		</p>
+	</div>
+	</body>
+</html>
+
+
+<style>
+	.wrapper {
+		width: 350px;
+		position: fixed;
+		top: 45%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		
+	}
+	.sm {
+		font-size: 13px;
+	}
+	html, body {
+		margin: 0;
+		padding: 0;
+	}
+	body {
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 15px;
+		background: #fee6e3;
+	}
+	h1 {
+		color: #084cdf;
+	}
+	form {
+		width: 300px;
+		/* background-color: #f5f5f5; */
+		border: 2px #084cdf solid;
+		padding: 1rem 0 1.5rem 1rem;
+		margin: 1rem 0;
+		border-radius: 1rem;
+		z-index: -1;
+	}
+	label {
+		display: inline-block;
+		font-size: 14px;
+		width: 200px;
+	}
+	input {
+		margin-bottom: 5px;
+		vertical-align: top;
+	}
+	input[type="number"] {
+		width: 70px;
+	}
+
+	/* file */
+	
+	input[type=file] {
+	/* width: 350px; */
+	width: calc(100% - 30px);
+	/* max-width: 100%; */
+	color: #444;
+	padding: 5px;
+	background: #fff;
+	border-radius: 10px;
+	border: 2px solid #084cdf;
+	}
+
+	input[type=file]::file-selector-button {
+	margin-right: 20px;
+	border: none;
+	background: #084cdf;
+	padding: 10px 20px;
+	border-radius: 10px;
+	color: #fff;
+	cursor: pointer;
+	transition: background .2s ease-in-out;
+	}
+
+	input[type=file]::file-selector-button:hover {
+	background: #0d45a5;
+	}
+	
+	/* button */
+	.button-56 {
+	align-items: center;
+	/* background-color: #fee6e3; */
+	background: white;
+	border: 2px solid #111;
+	border-radius: 8px;
+	box-sizing: border-box;
+	color: #111;
+	cursor: pointer;
+	display: flex;
+	font-family: Inter,sans-serif;
+	font-size: 16px;
+	height: 48px;
+	justify-content: center;
+	line-height: 24px;
+	width: calc(100% - 24px);
+	padding: 0 25px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	}
+
+	.button-56:after {
+	background-color: #111;
+	border-radius: 8px;
+	content: "";
+	display: block;
+	height: 48px;
+	left: 0;
+	width: 100%;
+	position: absolute;
+	top: -2px;
+	transform: translate(8px, 8px);
+	transition: transform .2s ease-out;
+	z-index: -2;
+	}
+
+	.button-56:hover:after {
+	transform: translate(0, 0);
+	}
+
+	.button-56:active {
+	background-color: #ffdeda;
+	outline: 0;
+	}
+
+	.button-56:hover {
+	outline: 0;
+	}
+
+	@media (min-width: 768px) {
+	.button-56 {
+		padding: 0 40px;
+	}
+	}
+</style>
