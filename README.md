@@ -13,7 +13,24 @@ Shoutouts to *Kraig Grady* for making my favorite tunings (like **Sisiutl**), to
 
 # 𝖀𝖘𝖆𝖌𝖊 (binaries)
 
-Currently I've only compiled the GUI version for Apple Silicon Macs.
+Currently I've only compiled the GUI version for Apple Silicon Macs. Run it from the terminal after making it executable first.
+
+```
+cd ~/path/to/scala2mts
+chmod +x scala2mts
+./scala2mts
+```
+
+This will give you the macOS error message:
+
+`“scala2mts” can’t be opened because Apple cannot check it for malicious software.`
+
+* Open System Settings > Privacy & Security
+* Scroll down to where you see `"scala2mts" was blocked from use because it is not from an identified developer.`
+* Click the button `Allow Anyway`
+
+
+# 𝖀𝖘𝖆𝖌𝖊 (compiling for Linux, Windows, etc.)
 
 You can compile it for your platform with Python by installing `pyinstaller` with `pip`, and then running:
 
@@ -86,6 +103,7 @@ Wrote sysex to grady-sisiutl.syx
 
 * `Python 3`
 * `tkinter` for running the non-binary GUI version
+
 
 # Roadmap
 
