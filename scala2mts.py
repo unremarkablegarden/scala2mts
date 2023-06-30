@@ -2,7 +2,7 @@
 # Path: scala2mts.py
 # Author: Olle Holmberg, 2022
 # License: GPL v3
-# v0.0.4 - 2022-06-28
+# v0.0.4 - 2023-06-30
 # 
 # https://github.com/unremarkablegarden/scala2mts
 # 
