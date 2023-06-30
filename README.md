@@ -28,9 +28,10 @@ This will give you the macOS error message:
 `“scala2mts” can’t be opened because Apple cannot check it for malicious software.`
 
 * Open System Settings > Privacy & Security
-* Scroll down to where you see `"scala2mts" was blocked from use because it is not from an identified developer.`
+* Scroll down to where you see `"scala2mts" was blocked from use because it is not from an identified developer`
 * Click the button `Allow Anyway`
-* In the terminal again: `./scala2mts`
+* Either: In the terminal again: `./scala2mts`
+* Or: Just double-click on the executable in Finder
 
 
 # 𝖀𝖘𝖆𝖌𝖊 (compiling for Linux, Windows, etc.)
