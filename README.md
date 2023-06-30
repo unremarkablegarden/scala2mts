@@ -6,6 +6,8 @@ Works with Scala files defined in *just intonation* (ratios) or in *cents*. Work
 
 I made this because I just couldn't find a tool that does it online any more, and because the SysEx dumps from the Scala app itself are the wrong formats to be able to specify a program memory slot with HexFiend after *(Yes, I tried them all)*.
 
+You can use [SysEx Librarian](https://www.snoize.com/sysexlibrarian/) to transfer the tunings to your devices.
+
 Shoutouts to *Kraig Grady* for making my favorite tunings (like **Sisiutl**), to *I Nyoman Mariyana* for showing me his ancient Balinese gamelan tunings and being the reason to make this script, and to *Werner Durand* for deepening my knowledge and love for microtonality.
 
 # [Scala2MTS web app](https://scala2mts.vercel.app/)
