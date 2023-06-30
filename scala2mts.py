@@ -47,6 +47,7 @@ try:
 except getopt.GetoptError as err:
 	print(err)
 	sys.exit(2)
+
 for o, a in opts:
 	if o in ("-h", "--help"):
 		print(__doc__)
@@ -64,6 +65,11 @@ for o, a in opts:
 		program_number = int(a)
 	else:
 		assert False, "unhandled option"
+	
+# check if any flags are specified
+if len(opts) == 0:
+	print(__doc__)
+	sys.exit()
 		
 # check for required arguments
 if input_file is None:
