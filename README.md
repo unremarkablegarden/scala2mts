@@ -2,7 +2,7 @@
 
 # 𝕾𝖈𝖆𝖑𝖆 𝟐 𝕸𝕿𝕾
 
-Scala2MTS is a Python program to convert Scala tuning files to MIDI Tuning Standard SysEx (for use with hardware synths and sequencers, like the Cirklon and Prophet).
+Scala2MTS is a Python program to convert Scala tuning files to MIDI Tuning Standard SysEx (for use with hardware synths and sequencers, like the Sequentix Cirklon and Sequential Prophet rev2).
 
 Works with Scala files defined in just intonation (ratios) or in cents. Works with non-2/1 octave tunings and non-octave-repeating tunings, for the real headz.
 
@@ -10,13 +10,15 @@ I made this because I just couldn't find a tool that does it online any more, an
 
 Shoutouts to Kraig Grady for making my favorite tunings (like Sisiutl), to I Nyoman Mariyana for showing me his ancient Balinese gamelan tunings and being the reason to make this script, and to Werner Durand for teaching me microtonality.
 
+
 # 𝖀𝖘𝖆𝖌𝖊 (binaries)
 
 Currently I've only compiled the GUI version for Apple Silicon Macs.
 
-You can compile it for your platform with Python by installing pyinstaller with pip, and then running:
+You can compile it for your platform with Python by installing `pyinstaller` with `pip`, and then running:
 
 > pyinstaller --onefile scala2mts-gui.py
+
 
 # 𝖀𝖘𝖆𝖌𝖊 (command line)
 
@@ -82,8 +84,8 @@ Wrote sysex to grady-sisiutl.syx
 
 # 𝕽𝖊𝖖𝖚𝖎𝖗𝖊𝖒𝖊𝖓𝖙𝖘
 
-* Python 3
-* tkinter for GUI
+* `Python 3`
+* `tkinter` for running the non-binary GUI version
 
 —
 
