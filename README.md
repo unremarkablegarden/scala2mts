@@ -2,13 +2,13 @@
 
 # 𝕾𝖈𝖆𝖑𝖆 𝟐 𝕸𝕿𝕾
 
-Scala2MTS is a Python program to convert Scala tuning files to MIDI Tuning Standard SysEx (for use with hardware synths and sequencers, like the Sequentix Cirklon and Sequential Prophet rev2).
+**Scala2MTS** is a Python program to convert **Scala** tuning files to **MIDI Tuning Standard SysEx** (for use with hardware synths and sequencers, like the *Sequentix Cirklon* and *Sequential Prophet rev2*).
 
-Works with Scala files defined in just intonation (ratios) or in cents. Works with non-2/1 octave tunings and non-octave-repeating tunings, for the real headz.
+Works with Scala files defined in *just intonation* (ratios) or in *cents*. Works with non-2/1 octave tunings and non-octave-repeating tunings, for the real headz.
 
-I made this because I just couldn't find a tool that does it online any more, and because the SysEx dumps from Scala are the wrong formats to be able to specify a program memory slot (Yes, I tried them all).
+I made this because I just couldn't find a tool that does it online any more, and because the SysEx dumps from the Scala app itself are the wrong formats to be able to specify a program memory slot with HexFiend after *(Yes, I tried them all)*.
 
-Shoutouts to Kraig Grady for making my favorite tunings (like Sisiutl), to I Nyoman Mariyana for showing me his ancient Balinese gamelan tunings and being the reason to make this script, and to Werner Durand for teaching me microtonality.
+Shoutouts to *Kraig Grady* for making my favorite tunings (like **Sisiutl**), to *I Nyoman Mariyana* for showing me his ancient Balinese gamelan tunings and being the reason to make this script, and to *Werner Durand* for deepening my knowledge and love for microtonality.
 
 
 # 𝖀𝖘𝖆𝖌𝖊 (binaries)
