@@ -241,18 +241,6 @@ def convert_scl_to_syx(input_file, output_file, base_note, base_freq, program_nu
 					scala_cents.append(cents) 
 			else: 
 					scala_cents.append(scala_notes[i])
-	
-	# OLD
-	# if scala_notes_are_ratios:
-	# 	# convert ratios to cents
-	# 	for note in scala_notes:
-	# 		ratio = ratio_to_float(note)
-	# 		cents = ratio_to_cents(ratio)
-	# 		scala_cents.append(cents)
-	# else:
-	# 	# put scala_notes in scala_cents
-	# 	scala_cents = scala_notes
-
 
 	# function to calculate ratio of cents
 	def cents_to_ratio(cents):
@@ -298,20 +286,6 @@ def convert_scl_to_syx(input_file, output_file, base_note, base_freq, program_nu
 		hex = format(num, '02x')
 		return hex
 
-	# print(num_to_hex(69)) # outputs 45
-
-	# calculate hz of all notes in standard tuning
-	# function to calculate freq of note
-	# def note_to_hz_std(note):
-	#   freq = 440 * 2**((note - 69)/12)
-	#   return freq
-
-	# calculate freqs of all notes in standard tuning
-	# std_freqs = []
-	# for i in range(0, 128):
-	#   freq = note_to_hz_std(i)
-	#   std_freqs.append(freq)
-		
 	"""
 	Frequency data format (all bytes in hex)
 
@@ -428,36 +402,11 @@ def convert_scl_to_syx(input_file, output_file, base_note, base_freq, program_nu
 	# convert checksum to hex
 	checksum = num_to_hex(checksum)
 
-
-	# print('Base note' + ': ' + str(base_note))
-	# print('Base freq' + ': ' + str(base_freq))
-	# print('Notes per octave' + ': ' + str(notes_per_octave))
-	# print('————————————————————')
-	# print('Intervals')
-	# # print items in scala_cents with index
-	# for i, item in enumerate(scala_cents):
-	# 	item = round(float(item), 3)
-	# 	print(str(i+1) + " = " + str(item))
-	# print('————————————————————')
-
-
 	# sysex
 	sysex = header + " " + data + " " + checksum + " " + footer
 
 	# remove spaces from sysex
 	sysex = sysex.replace(" ", "")
-
-	# sysex_print = add space every four chars
-	# sysex_print = ' '.join(sysex[i:i+4] for i in range(0, len(sysex), 4))
-	# break sys ex into lines of 70 chars
-	# sysex_print = textwrap.wrap(sysex_print, 70)
-
-	# print sysex_print
-	# for line in sysex_print:
-		# print(line)
-		
-	# print('————————————————————')
-
 
 	# convert sysex to bytes
 	sysex = bytes.fromhex(sysex)
@@ -480,12 +429,6 @@ def convert_scl_to_syx(input_file, output_file, base_note, base_freq, program_nu
 	if os.path.isfile(output_file):
 		# exception if output_file exists
 		raise Exception("Output file " + str(output_file) + " already exists.")
-		# print("Output file " + output_file + " already exists. Overwrite? (y/n) [enter]")
-		# overwrite = input()
-		# if overwrite == "y":
-		# 	write_file(sysex)
-		# else:
-		# 	print("Aborting.")
 	else:
 		write_file(sysex)
 		# return success message in try: except: block

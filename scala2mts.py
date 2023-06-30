@@ -94,6 +94,7 @@ scala_name = scala_lines[0].strip()
 scala_name = scala_name[2:]
 # remove the .scl extension
 scala_name = scala_name.replace(".scl", "")
+
 # replace dashes and underlines with spaces
 # scala_name = scala_name.replace("-", " ")
 # scala_name = scala_name.replace("_", " ")
@@ -167,17 +168,6 @@ for i in range(len(scala_notes)):
     else: 
         scala_cents.append(scala_notes[i])
 
-# OLD CODE
-# if scala_notes_are_ratios:
-# 	# convert ratios to cents
-# 	for note in scala_notes:
-# 		ratio = ratio_to_float(note)
-# 		cents = ratio_to_cents(ratio)
-# 		scala_cents.append(cents)
-# else:
-# 	# put scala_notes in scala_cents
-# 	scala_cents = scala_notes
-
 
 # function to calculate ratio of cents
 def cents_to_ratio(cents):
@@ -218,19 +208,6 @@ def num_to_hex(num):
 	hex = format(num, '02x')
 	return hex
 
-# print(num_to_hex(69)) # outputs 45
-
-# calculate hz of all notes in standard tuning
-# function to calculate freq of note
-# def note_to_hz_std(note):
-#   freq = 440 * 2**((note - 69)/12)
-#   return freq
-
-# calculate freqs of all notes in standard tuning
-# std_freqs = []
-# for i in range(0, 128):
-#   freq = note_to_hz_std(i)
-#   std_freqs.append(freq)
 	
 """
 Frequency data format (all bytes in hex)
