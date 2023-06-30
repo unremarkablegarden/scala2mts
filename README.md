@@ -72,8 +72,8 @@ Wrote sysex to grady-sisiutl.syx
 
 # 𝕽𝖊𝖖𝖚𝖎𝖗𝖊𝖒𝖊𝖓𝖙𝖘
 
-• Python 3
-• tkinter for GUI
+* Python 3
+* tkinter for GUI
 
 —
 
