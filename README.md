@@ -87,6 +87,10 @@ Wrote sysex to grady-sisiutl.syx
 * `Python 3`
 * `tkinter` for running the non-binary GUI version
 
+# Roadmap
+
+Can somebody please port this to a `Node.js` app so that we can just run it in the browser?
+
 —
 
 🪦 *RIP https://www.microtonalsoftware.com/scl-scala-to-mts-converter.html* 🪦
