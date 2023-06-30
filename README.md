@@ -1,6 +1,8 @@
+![Scala2MTS](https://raw.githubusercontent.com/unremarkablegarden/scala2mts/main/screenshots/GUI%20v0.0.4.png)
+
 # 𝕾𝖈𝖆𝖑𝖆 𝟐 𝕸𝕿𝕾
 
-Python script to convert Scala tuning files to MIDI Tuning Standard SysEx (for use with hardware synths and sequencers, like the Cirklon and Prophet).
+Scala2MTS is a Python program to convert Scala tuning files to MIDI Tuning Standard SysEx (for use with hardware synths and sequencers, like the Cirklon and Prophet).
 
 Works with Scala files defined in just intonation (ratios) or in cents. Works with non-2/1 octave tunings and non-octave-repeating tunings, for the real headz.
 
