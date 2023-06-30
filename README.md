@@ -61,7 +61,7 @@ Arguments:
 -o output file: the SysEx file to create (default: the input file name with .syx extension)
 -n base_note: the base note as a number (default = 69 = A4)
 -f base_freq: the base frequency of the Scala file (default = 440.000)
--p program_number: which memory slot to store the tuning in the synth (default = 1 = first)
+-p program_number: which memory slot to store the tuning in the synth
 -h help: show this help message
 ```
 

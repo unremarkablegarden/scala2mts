@@ -1,5 +1,12 @@
+# Author: Olle Holmberg, 2022
+# License: GPL v3
+# v0.0.5 - 2023-06-30
+# 
+# https://github.com/unremarkablegarden/scala2mts
+
+
 from flask import Flask, render_template, request, Response
-import io, functools, operator, math
+import io, functools, operator, math, chardet
 
 app = Flask(__name__)
 
@@ -9,16 +16,18 @@ def home():
         file = request.files['file']
         if file:
             try:
-                program_number = int(request.form.get('program_number', 0))
+                program_number = int(request.form.get('program_number', 1))
                 base_note = int(request.form.get('base_note', 69))
                 base_freq = float(request.form.get('base_freq', 440))
             except ValueError:
                 return "Invalid input. Please provide valid numbers."
 
-            text = file.read().decode('utf-8')
-            output_filename = file.filename + ".syx"
+            # text = file.read().decode('utf-8')
+            text = convert_to_utf8(file)
+            
+            output_filename = file.filename + "-p" + str(program_number) + ".syx"
             output_file = scl_to_syx(text, program_number, base_note, base_freq)
-
+            
             return stream_file(output_file, output_filename)
             
         else:
@@ -38,14 +47,32 @@ def stream_file(output_file, output_filename):
 
 # --------------------------------------------------------
 
+def convert_to_utf8(file):
+    # Read the binary content of the file
+    file_content = file.read()
+
+    # Detect the file encoding
+    result = chardet.detect(file_content)
+    file_encoding = result['encoding']
+
+    # Convert the content to UTF-8
+    content_utf8 = file_content.decode(file_encoding)
+    
+    return content_utf8
+
+# --------------------------------------------------------
+
 def scl_to_syx(file, program_number, base_note, base_freq):
     # Use the program_number, base_note, and base_freq as needed
     
     # parse the Scala file
     scala_lines = file.splitlines()
+    
     scala_name = scala_lines[0].strip()
+
     # remove the ! and space from the name
     scala_name = scala_name[2:]
+
     # remove the .scl extension
     scala_name = scala_name.replace(".scl", "")
 

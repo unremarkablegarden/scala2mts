@@ -2,11 +2,12 @@
 # Path: scala2mts.py
 # Author: Olle Holmberg, 2022
 # License: GPL v3
-# v0.0.4 - 2023-06-30
+# v0.0.5 - 2023-06-30
 # 
 # https://github.com/unremarkablegarden/scala2mts
 # 
 # Reference: https://musescore.org/sites/musescore.org/files/2018-06/midituning.pdf
+
 
 """
 Convert Scala files to SysEx files for use with the Prophet rev2 and Cirklon.
@@ -19,7 +20,7 @@ Arguments:
 -o output file: the SysEx file to create (default: the input file name with .syx extension)
 -n base_note: the base note as a number (default = 69 = A4)
 -f base_freq: the base frequency of the Scala file (default = 440.000)
--p program_number: which memory slot to store the tuning in the synth (default is 0 = first)
+-p program_number: which memory slot to store the tuning in the synth
 -h help: show this help message
 """
 
@@ -30,11 +31,13 @@ import math
 import functools
 import operator
 import textwrap
+import chardet
+
 
 # define defaults
 input_file = None
 output_file = None
-program_number = 0
+program_number = 1
 
 base_note = 69
 base_freq = 440
@@ -84,8 +87,14 @@ if output_file is None:
 	output_file = output_file + ".syx"
 	
 
-# read the Scala file
-with open(input_file, 'r') as f:
+# Open the file in binary mode to avoid decoding errors
+with open(input_file, 'rb') as f:
+    # Detect the file encoding
+    result = chardet.detect(f.read())
+    file_encoding = result['encoding']
+
+# Reopen the file with the detected encoding and convert it to UTF-8
+with open(input_file, 'r', encoding=file_encoding) as f:
 	scala_lines = f.readlines()
 
 # parse the Scala file
