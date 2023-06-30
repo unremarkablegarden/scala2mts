@@ -1,6 +1,3 @@
-![Scala2MTS](https://raw.githubusercontent.com/unremarkablegarden/scala2mts/main/screenshots/GUI%20v0.0.4.png)
-![Scala2MTS web](https://raw.githubusercontent.com/unremarkablegarden/scala2mts/main/screenshots/web-app.png)
-
 # 𝕾𝖈𝖆𝖑𝖆 𝟐 𝕸𝕿𝕾
 
 **Scala2MTS** is a Python program to convert **Scala** tuning files to **MIDI Tuning Standard SysEx** (for use with hardware synths and sequencers, like the *Sequentix Cirklon* and *Sequential Prophet rev2*).
@@ -13,7 +10,11 @@ Shoutouts to *Kraig Grady* for making my favorite tunings (like **Sisiutl**), to
 
 # [Scala2MTS web app](https://scala2mts.vercel.app/)
 
+![Scala2MTS web](https://raw.githubusercontent.com/unremarkablegarden/scala2mts/main/screenshots/web-app.png)
+
 # 𝖀𝖘𝖆𝖌𝖊 (binary)
+
+![Scala2MTS](https://raw.githubusercontent.com/unremarkablegarden/scala2mts/main/screenshots/GUI%20v0.0.4.png)
 
 Currently I've only compiled the GUI version for Apple Silicon Macs. Run it from the terminal after making it executable first.
 
