@@ -10,6 +10,8 @@ You can use [SysEx Librarian](https://www.snoize.com/sysexlibrarian/) to transfe
 
 Shoutouts to *Kraig Grady* for making my favorite tunings (like **Sisiutl**), to *I Nyoman Mariyana* for showing me his ancient Balinese gamelan tunings and being the reason to make this script, and to *Werner Durand* for deepening my knowledge and love for microtonality.
 
+If you found this project useful consider [donating](https://www.paypal.com/donate/?hosted_button_id=ZYM99298H3T2Y) 🙏
+
 # [Scala2MTS web app](https://scala2mts.vercel.app/)
 
 ![Scala2MTS web](https://raw.githubusercontent.com/unremarkablegarden/scala2mts/main/screenshots/web-app.png)

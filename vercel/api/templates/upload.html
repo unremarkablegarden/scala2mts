@@ -15,7 +15,7 @@
 		
 		<form action="/" method="POST" enctype="multipart/form-data">
 			<input type="file" name="file" accept=".scl" required><br/><br/>
-			<label>Root note (MIDI note number)</label>
+			<label>Root note (<a href="https://computermusicresource.com/midikeys.html" target="_blank">MIDI note number</a>)</label>
 			<input type="number" name="base_note" placeholder="69" value="69"><br/>
 			<label>Base frequency (Hz)<br/></label>
 			<input type="number" name="base_freq" placeholder="440" value="440"><br/>
@@ -25,10 +25,13 @@
 			<!-- <button class="button-56" role="button">Button 56</button> -->
 			<button class="button-56" role="button" type="submit">Convert and Download</button>
 		</form>
-		<p class="sm">by Olle Holmberg | 
-		<a href="mailto:olle@unremarkablegarden.com" target="_blank">E-mail</a> | 
-		<a href="https://github.com/unremarkablegarden/scala2mts" target="_blank">GitHub</a> | 
-		<a href="https://unremarkablegarden.com/" target="_blank">Work</a>
+		<p class="sm">
+			Made by Olle Holmberg | 
+			<a href="mailto:&#111;&#108;&#108;&#101;&#064;&#117;&#110;&#114;&#101;&#109;&#097;&#114;&#107;&#097;&#098;&#108;&#101;&#103;&#097;&#114;&#100;&#101;&#110;&#046;&#099;&#111;&#109;" target="_blank">E-mail</a> | 
+			<a href="https://github.com/unremarkablegarden/scala2mts" target="_blank">GitHub</a> | 
+			<a href="https://unremarkablegarden.com/" target="_blank">Work</a>
+			<br/>
+			Found this valuable? Consider a <a href="https://www.paypal.com/donate/?hosted_button_id=ZYM99298H3T2Y" target="_blank">small donation</a> <span class="lg">🙏</span>
 		</p>
 	</div>
 	</body>
@@ -36,6 +39,12 @@
 
 
 <style>
+	a, a:visited {
+		color: #084cdf;
+	}
+	.lg {
+		font-size: 18px;
+	}
 	.wrapper {
 		width: 350px;
 		position: fixed;
@@ -111,7 +120,7 @@
 		border-radius: 10px;
 		color: #fff;
 		cursor: pointer;
-		transition: background .15s ease-in-out;
+		transition: all .15s ease-in-out;
 	}
 
 	input[type=file]::file-selector-button:hover {
@@ -142,7 +151,7 @@
 		user-select: none;
 		-webkit-user-select: none;
 		touch-action: manipulation;
-		transition: background .15s ease-in-out;
+		transition: all .15s ease-in-out;
 		/* z-index: 90 !important; */
 		/* position: relative; */
 		margin-right: 8px;
