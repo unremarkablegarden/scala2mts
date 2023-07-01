@@ -8,7 +8,7 @@ I made this because I just couldn't find a tool that does it online any more, an
 
 You can use [SysEx Librarian](https://www.snoize.com/sysexlibrarian/) to transfer the tunings to your devices.
 
-Shoutouts to *Kraig Grady* for making my favorite tunings (like **Sisiutl**), to *I Nyoman Mariyana* for showing me his ancient Balinese gamelan tunings and being the reason to make this script, and to *Werner Durand* for deepening my knowledge and love for microtonality.
+Shoutouts to *[Kraig Grady](https://anaphoria.bandcamp.com/music)* for making my favorite tunings (like **[Sisiutl](https://www.anaphoria.com/centaur.html)**), to *[I Nyoman Mariyana](https://www.instagram.com/mangbosski/)* for showing me his ancient Balinese gamelan tunings and being the reason to make this script, and to *[Werner Durand](https://wernerdurand.bandcamp.com/)* for deepening my knowledge and love for microtonality.
 
 If you found this project useful consider [donating](https://www.paypal.com/donate/?hosted_button_id=ZYM99298H3T2Y) 🙏
 
