@@ -12,7 +12,7 @@ Shoutouts to *[Kraig Grady](https://anaphoria.bandcamp.com/music)* for making my
 
 If you found this project useful consider [donating](https://www.paypal.com/donate/?hosted_button_id=ZYM99298H3T2Y) 🙏
 
-# [Scala2MTS web app](https://scala2mts.vercel.app/)
+# [𝕾𝖈𝖆𝖑𝖆𝟐𝕸𝕿𝕾 (web app)](https://scala2mts.vercel.app/)
 
 ![Scala2MTS web](https://raw.githubusercontent.com/unremarkablegarden/scala2mts/main/screenshots/web-app.png)
 
@@ -116,9 +116,12 @@ Wrote sysex to grady-sisiutl.syx
 
 —
 
-# Links
+# 𝕷𝖎𝖓𝖐𝖘
 * Moon Wheel — [Soundcloud](https://soundcloud.com/moonwheel), [Bandcamp](https://moonwheel.bandcamp.com/)
 * Tusagi — [Soundcloud](https://soundcloud.com/tusagi)
+* [Scale Workshop](https://sevish.com/scaleworkshop/)
+* [Scala tunings archive (5100, ZIP)](https://huygens-fokker.org/docs/scales.zip)
+* [Scala tunings archive descriptions](https://huygens-fokker.org/docs/scalesdir.txt)
 * [Xenharmonic Alliance: Microtonal Music Forum](https://www.facebook.com/groups/476404232379884)
 * [Cirklon forum](http://forum.sequentix.com/viewforum.php?f=1)
 
