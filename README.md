@@ -2,9 +2,9 @@
 
 **Scala2MTS** is a Python program to convert **Scala** tuning files to **MIDI Tuning Standard SysEx** (for use with hardware synths and sequencers, like the *[Sequentix Cirklon](https://www.sequentix.com/)* and *[Sequential Prophet rev2](https://www.sequential.com/product/prophetrev2/)*).
 
-Works with Scala files defined in *just intonation* (ratios) or in *cents*. Works with non-2/1 octave tunings and non-octave-repeating tunings, for the real headz.
+Works with Scala files defined in *[just intonation](https://www.kylegann.com/tuning.html)* (ratios) or in *cents*. Works with [non-2/1 octave tunings](https://en.xen.wiki/w/Bohlen-Pierce_scale) and non-octave-repeating tunings, for the real headz.
 
-I made this because I just couldn't find a tool that does it online any more, and because the SysEx dumps from the Scala app itself are the wrong formats to be able to specify a program memory slot with HexFiend after *(Yes, I tried them all)*.
+I made this because I just couldn't find a tool that does it online any more, and because the SysEx dumps from the [Scala app](https://huygens-fokker.org/scala/) itself are the wrong formats to be able to specify a program memory slot with [HexFiend](https://hexfiend.com/) after *(Yes, I tried them all)*.
 
 You can use [SysEx Librarian](https://www.snoize.com/sysexlibrarian/) to transfer the tunings to your devices.
 
@@ -111,9 +111,16 @@ Wrote sysex to grady-sisiutl.syx
 ```
 
 # 𝕽𝖊𝖖𝖚𝖎𝖗𝖊𝖒𝖊𝖓𝖙𝖘
-
 * `Python 3`
 * `tkinter` for running the non-binary GUI version
+
+—
+
+# Links
+* Moon Wheel — [Soundcloud](https://soundcloud.com/moonwheel), [Bandcamp](https://moonwheel.bandcamp.com/)
+* Tusagi — [Soundcloud](https://soundcloud.com/tusagi)
+* [Xenharmonic Alliance: Microtonal Music Forum](https://www.facebook.com/groups/476404232379884)
+* [Cirklon forum](http://forum.sequentix.com/viewforum.php?f=1)
 
 —
 
