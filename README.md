@@ -114,7 +114,6 @@ Wrote sysex to grady-sisiutl.syx
 * `Python 3`
 * `tkinter` for running the non-binary GUI version
 
-—
 
 # 𝕷𝖎𝖓𝖐𝖘
 * Moon Wheel — [Soundcloud](https://soundcloud.com/moonwheel), [Bandcamp](https://moonwheel.bandcamp.com/)
