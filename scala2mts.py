@@ -46,46 +46,46 @@ base_freq = 440
 
 # parse command line arguments
 try:
-	opts, args = getopt.getopt(sys.argv[1:], "hi:o:n:f:p:", ["help", "input=", "output=", "base_note=", "base_freq=", "program_number="])
+    opts, args = getopt.getopt(sys.argv[1:], "hi:o:n:f:p:", ["help", "input=", "output=", "base_note=", "base_freq=", "program_number="])
 except getopt.GetoptError as err:
-	print(err)
-	sys.exit(2)
+    print(err)
+    sys.exit(2)
 
 for o, a in opts:
-	if o in ("-h", "--help"):
-		print(__doc__)
-		sys.exit()
-	elif o in ("-i", "--input"):
-		input_file = a
-	elif o in ("-o", "--output"):
-		output_file = a
-	elif o in ("-n", "--base_note"):
-		base_note = int(a)
-	elif o in ("-f", "--base_freq"):
-		base_freq = float(a)
-	elif o in ("-p", "--program_number"):
-		# first is actually 0
-		program_number = int(a)
-	else:
-		assert False, "unhandled option"
-	
+    if o in ("-h", "--help"):
+        print(__doc__)
+        sys.exit()
+    elif o in ("-i", "--input"):
+        input_file = a
+    elif o in ("-o", "--output"):
+        output_file = a
+    elif o in ("-n", "--base_note"):
+        base_note = int(a)
+    elif o in ("-f", "--base_freq"):
+        base_freq = float(a)
+    elif o in ("-p", "--program_number"):
+        # first is actually 0
+        program_number = int(a)
+    else:
+        assert False, "unhandled option"
+    
 # check if any flags are specified
 if len(opts) == 0:
-	print(__doc__)
-	sys.exit()
-		
+    print(__doc__)
+    sys.exit()
+        
 # check for required arguments
 if input_file is None:
-	print("Error: input file is required")
-	sys.exit(2)
-	
+    print("Error: input file is required")
+    sys.exit(2)
+    
 # set output file name if not specified
 if output_file is None:
     # remove file extension
     output_file = os.path.splitext(input_file)[0]
-	# add .syx extension
+    # add .syx extension
     output_file = output_file + ".syx"
-	
+    
 
 # Open the file in binary mode to avoid decoding errors
 with open(input_file, 'rb') as f:
@@ -95,14 +95,15 @@ with open(input_file, 'rb') as f:
 
 # Reopen the file with the detected encoding and convert it to UTF-8
 with open(input_file, 'r', encoding=file_encoding) as f:
-	scala_lines = f.readlines()
+    scala_lines = f.readlines()
 
 # parse the Scala file
 scala_name = scala_lines[0].strip()
 # remove the ! and space from the name
 scala_name = scala_name[2:]
-# remove full path
-scala_name = scala_name.split('/')[-1]
+# remove full path, if it exists
+if "/" in scala_name:
+    scala_name = scala_name.split('/')[-1]
 print(scala_name)
 # remove the .scl extension
 scala_name = scala_name.replace(".scl", "")
@@ -115,62 +116,62 @@ scala_name = scala_name.replace(".scl", "")
 # scala_description = the first scala_lines line that doesn't start with !
 scala_description = ""
 for line in scala_lines:
-	if not line.startswith("!"):
-		scala_description = line.strip()
-		break
+    if not line.startswith("!"):
+        scala_description = line.strip()
+        break
 
 
 # get the number of notes
 # notes_per_octave = the first scala_lines line that starts with a number
 notes_per_octave = 0
 for line in scala_lines:
-	if line.startswith(" "):
-		notes_per_octave = int(line.strip())
-		break
+    if line.startswith(" "):
+        notes_per_octave = int(line.strip())
+        break
 
 
 # notes raw data
 scala_notes = []
 for line in scala_lines:
-	if line.startswith(" "):
-		note = line.strip()
-		scala_notes.append(note)
-		
+    if line.startswith(" "):
+        note = line.strip()
+        scala_notes.append(note)
+        
 # remove the first element, the number of notes
 scala_notes.pop(0)
 
-	
+    
 # function to convert a frequency to a ratio
 def ratio_to_float(strrat):
-		nden = strrat.replace("/", ":").split(":")
-		if nden[0] == "x":
-				return None
-		elif len(nden) == 1:
-				res = float(nden[0])
-				return res
-		elif len(nden) == 2:
-				num, denom = nden
-				res = float(num)/float(denom)
-				return res
+        nden = strrat.replace("/", ":").split(":")
+        if nden[0] == "x":
+                return None
+        elif len(nden) == 1:
+                res = float(nden[0])
+                return res
+        elif len(nden) == 2:
+                num, denom = nden
+                res = float(num)/float(denom)
+                return res
 
-		else:
-				raise Exception("%s is not a valid number or ratio" % strrat)
+        else:
+                raise Exception("%s is not a valid number or ratio" % strrat)
 
 
 # function to convert a ratio to a frequency
 def ratio_to_cents(ratio):
-		if ratio is not None:
-				res = 1200 * math.log(ratio, 2)
-		else:
-				res = None
-		return res
+        if ratio is not None:
+                res = 1200 * math.log(ratio, 2)
+        else:
+                res = None
+        return res
 
-	
+    
 # check if notes are frequencies or ratios
 scala_notes_are_ratios = False
 if "/" in scala_notes[0]:
-	scala_notes_are_ratios = True
-	
+    scala_notes_are_ratios = True
+    
 scala_cents = []
 for i in range(len(scala_notes)):
     if "/" in scala_notes[i]:
@@ -183,44 +184,44 @@ for i in range(len(scala_notes)):
 
 # function to calculate ratio of cents
 def cents_to_ratio(cents):
-	ratio = 2**(cents/1200)
-	return ratio
+    ratio = 2**(cents/1200)
+    return ratio
 
 # calculate ratios of scale
 scala_ratios = []
 for note in scala_cents:
-	ratio = cents_to_ratio(float(note))
-	scala_ratios.append(ratio)
+    ratio = cents_to_ratio(float(note))
+    scala_ratios.append(ratio)
 
 # add the base frequency to the start of the list
 scala_ratios.insert(0, 1)
 
 # function to calculate frequency of note, based on base note and base frequency, using scala_ratios between notes, and the notes per octave
 def note_to_hz(note, base_note, base_freq, scala_ratios, notes_per_octave):
-	# calculate the note number within the octave
-	note_in_octave = (note - base_note) % notes_per_octave
-	# calculate the ratio of the note
-	ratio = scala_ratios[note_in_octave]
-	# calculate the octave of the note
-	octave = (note - base_note) // notes_per_octave
-	octave_size = scala_ratios[notes_per_octave]
-	# calculate the frequency of the note
-	freq = base_freq * (octave_size**octave) * ratio
-	return freq
-	
-	
+    # calculate the note number within the octave
+    note_in_octave = (note - base_note) % notes_per_octave
+    # calculate the ratio of the note
+    ratio = scala_ratios[note_in_octave]
+    # calculate the octave of the note
+    octave = (note - base_note) // notes_per_octave
+    octave_size = scala_ratios[notes_per_octave]
+    # calculate the frequency of the note
+    freq = base_freq * (octave_size**octave) * ratio
+    return freq
+    
+    
 # calculate frequencies of notes
 scala_freqs = []
 for i in range(0, 128):
-	freq = note_to_hz(i, base_note, base_freq, scala_ratios, notes_per_octave)
-	scala_freqs.append(freq)
+    freq = note_to_hz(i, base_note, base_freq, scala_ratios, notes_per_octave)
+    scala_freqs.append(freq)
 
 # function to convert number to hex
 def num_to_hex(num):
-	hex = format(num, '02x')
-	return hex
+    hex = format(num, '02x')
+    return hex
 
-	
+    
 """
 Frequency data format (all bytes in hex)
 
@@ -237,66 +238,66 @@ The next two bytes (14 bits) specify the fraction of 100 cents above the semiton
 
 # function to convert frequency to frequency data
 def hz_to_freq_data(freq):
-	# limit freq to bounds of MIDI note range
-	if freq < 8.1757989156:
-		freq = 8.1757989156
-	elif freq > 12543.853951:
-		freq = 12543.853951
-		
-	# calculate the nearest equal-tempered semitone below the frequency
-	semitone = round(12 * math.log(freq/440, 2) + 69)
-	# calculate the fraction of 100 cents above the semitone at which the frequency lies
-	cents = round(1200 * math.log(freq/440, 2) + 6900)
-	cents_fraction = cents - (semitone * 100)
-	if (cents_fraction < 0):
-		semitone = semitone - 1
-		cents_fraction = cents_fraction + 100
+    # limit freq to bounds of MIDI note range
+    if freq < 8.1757989156:
+        freq = 8.1757989156
+    elif freq > 12543.853951:
+        freq = 12543.853951
+        
+    # calculate the nearest equal-tempered semitone below the frequency
+    semitone = round(12 * math.log(freq/440, 2) + 69)
+    # calculate the fraction of 100 cents above the semitone at which the frequency lies
+    cents = round(1200 * math.log(freq/440, 2) + 6900)
+    cents_fraction = cents - (semitone * 100)
+    if (cents_fraction < 0):
+        semitone = semitone - 1
+        cents_fraction = cents_fraction + 100
 
-	# calculate the MSB of the fractional part
-	# 1 MSB = 1/128 semitone = 100/128 cents = .78125 cents
-	# msb = how many times .78125 fits into cents_fraction
-	msb = int(cents_fraction // .78125)
-	rest = cents_fraction % .78125
-	
-	# calculate the LSB of the fractional part
-	# 1 LSB = 1/16384 semitone = 100/16384 cents = .0061 cents
-	lsb = int(rest // .0061)
+    # calculate the MSB of the fractional part
+    # 1 MSB = 1/128 semitone = 100/128 cents = .78125 cents
+    # msb = how many times .78125 fits into cents_fraction
+    msb = int(cents_fraction // .78125)
+    rest = cents_fraction % .78125
+    
+    # calculate the LSB of the fractional part
+    # 1 LSB = 1/16384 semitone = 100/16384 cents = .0061 cents
+    lsb = int(rest // .0061)
 
-	semitone_hex = num_to_hex(semitone)
-	msb_hex = num_to_hex(msb)
-	lsb_hex = num_to_hex(lsb)
-	msb_hex = str(msb_hex)
-	lsb_hex = str(lsb_hex)
-	
-	# return semitone_hex, msb_hex, lsb_hex
-	return semitone_hex + " " + msb_hex + " " + lsb_hex
-	
+    semitone_hex = num_to_hex(semitone)
+    msb_hex = num_to_hex(msb)
+    lsb_hex = num_to_hex(lsb)
+    msb_hex = str(msb_hex)
+    lsb_hex = str(lsb_hex)
+    
+    # return semitone_hex, msb_hex, lsb_hex
+    return semitone_hex + " " + msb_hex + " " + lsb_hex
+    
 
 # calculate freq_data of all notes in scala_freqs
 scala_freq_data = []
 for freq in scala_freqs:
-	freq_data = hz_to_freq_data(freq)
-	scala_freq_data.append(freq_data)
-	
+    freq_data = hz_to_freq_data(freq)
+    scala_freq_data.append(freq_data)
+    
 """
 The format of the SysEx dump is as follows:
 
-		header = F0 7E 00 08 01 tt tn 
-		tuning_data = <xx yy zz> * 128
-		footer = ck F7
+        header = F0 7E 00 08 01 tt tn 
+        tuning_data = <xx yy zz> * 128
+        footer = ck F7
 
 where
 
-		F0 7E = universal non-realtime SysEx header
-		00    = target device ID
-		08    = sub-ID #1 (MIDI tuning standard)
-		01    = sub-ID #2 (bulk dump reply)
-		tt    = tuning program number 0 to 127 in hexadecimal
-		tn    = tuning name (16 ASCII characters)
-		<xx yy zz>    = frequency data for one note,
+        F0 7E = universal non-realtime SysEx header
+        00    = target device ID
+        08    = sub-ID #1 (MIDI tuning standard)
+        01    = sub-ID #2 (bulk dump reply)
+        tt    = tuning program number 0 to 127 in hexadecimal
+        tn    = tuning name (16 ASCII characters)
+        <xx yy zz>    = frequency data for one note,
                         repeated 128 times, one for each MIDI note number
-		ck    = checksum (XOR of 7E 00 01 tt <388 bytes>)
-		F7    = end of SysEx message
+        ck    = checksum (XOR of 7E 00 01 tt <388 bytes>)
+        F7    = end of SysEx message
 """
 
 # convert program number to hex
@@ -310,8 +311,8 @@ scala_name = scala_name.ljust(16)
 # convert scala name to hex
 scala_name_hex = []
 for char in scala_name:
-	char_hex = num_to_hex(ord(char))
-	scala_name_hex.append(char_hex)
+    char_hex = num_to_hex(ord(char))
+    scala_name_hex.append(char_hex)
 # join scala name hex list into string
 scala_name_hex = " ".join(scala_name_hex)
 
@@ -345,8 +346,8 @@ print('————————————————————')
 print('Intervals')
 # print items in scala_cents with index
 for i, item in enumerate(scala_cents):
-	item = round(float(item), 3)
-	print(str(i+1) + " = " + str(item))
+    item = round(float(item), 3)
+    print(str(i+1) + " = " + str(item))
 print('————————————————————')
 
 
@@ -363,8 +364,8 @@ sysex_print = textwrap.wrap(sysex_print, 70)
 
 # print sysex_print
 for line in sysex_print:
-	print(line)
-	
+    print(line)
+    
 print('————————————————————')
 
 
@@ -374,20 +375,20 @@ sysex = bytes.fromhex(sysex)
 print()
 
 def write_file(sysex):
-	# open output_file in binary write mode
-	f = open(output_file, "wb")
-	# write sysex to output_file
-	f.write(sysex)
-	f.close()
-	print("Wrote sysex to " + output_file)
+    # open output_file in binary write mode
+    f = open(output_file, "wb")
+    # write sysex to output_file
+    f.write(sysex)
+    f.close()
+    print("Wrote sysex to " + output_file)
 
 # check if output_file exists
 if os.path.isfile(output_file):
-	print("Output file " + output_file + " already exists. Overwrite? (y/n) [enter]")
-	overwrite = input()
-	if overwrite == "y":
-		write_file(sysex)
-	else:
-		print("Aborting.")
+    print("Output file " + output_file + " already exists. Overwrite? (y/n) [enter]")
+    overwrite = input()
+    if overwrite == "y":
+        write_file(sysex)
+    else:
+        print("Aborting.")
 else:
-	write_file(sysex)
+    write_file(sysex)
