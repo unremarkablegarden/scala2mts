@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # Path: scala2mts.py
-# Author: Olle Holmberg, 2022
+# Author: Olle Holmberg, 2022-2023
 # License: GPL v3
-# v0.0.5 - 2023-06-30
+# v0.0.51 - 2023-11-08
 # 
 # https://github.com/unremarkablegarden/scala2mts
 # 
