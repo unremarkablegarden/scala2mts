@@ -1,6 +1,6 @@
-# Author: Olle Holmberg, 2022
+# Author: Olle Holmberg, 2022-2023
 # License: GPL v3
-# v0.0.5 - 2023-06-30
+# v0.0.51 - 2023-11-08
 # 
 # https://github.com/unremarkablegarden/scala2mts
 
@@ -72,6 +72,10 @@ def scl_to_syx(file, program_number, base_note, base_freq):
 
     # remove the ! and space from the name
     scala_name = scala_name[2:]
+
+    # remove full path, if it exists
+    if "/" in scala_name:
+        scala_name = scala_name.split('/')[-1]
 
     # remove the .scl extension
     scala_name = scala_name.replace(".scl", "")
@@ -191,51 +195,51 @@ def scl_to_syx(file, program_number, base_note, base_freq):
 
 # function to convert a frequency to a ratio
 def ratio_to_float(strrat):
-		nden = strrat.replace("/", ":").split(":")
-		if nden[0] == "x":
-				return None
-		elif len(nden) == 1:
-				res = float(nden[0])
-				return res
-		elif len(nden) == 2:
-				num, denom = nden
-				res = float(num)/float(denom)
-				return res
+        nden = strrat.replace("/", ":").split(":")
+        if nden[0] == "x":
+                return None
+        elif len(nden) == 1:
+                res = float(nden[0])
+                return res
+        elif len(nden) == 2:
+                num, denom = nden
+                res = float(num)/float(denom)
+                return res
 
-		else:
-				raise Exception("%s is not a valid number or ratio" % strrat)
+        else:
+                raise Exception("%s is not a valid number or ratio" % strrat)
 
 
 # function to convert a ratio to a frequency
 def ratio_to_cents(ratio):
-		if ratio is not None:
-				res = 1200 * math.log(ratio, 2)
-		else:
-				res = None
-		return res
+        if ratio is not None:
+                res = 1200 * math.log(ratio, 2)
+        else:
+                res = None
+        return res
 
 # function to calculate ratio of cents
 def cents_to_ratio(cents):
-	ratio = 2**(cents/1200)
-	return ratio
+    ratio = 2**(cents/1200)
+    return ratio
 
 # function to calculate frequency of note, based on base note and base frequency, using scala_ratios between notes, and the notes per octave
 def note_to_hz(note, base_note, base_freq, scala_ratios, notes_per_octave):
-	# calculate the note number within the octave
-	note_in_octave = (note - base_note) % notes_per_octave
-	# calculate the ratio of the note
-	ratio = scala_ratios[note_in_octave]
-	# calculate the octave of the note
-	octave = (note - base_note) // notes_per_octave
-	octave_size = scala_ratios[notes_per_octave]
-	# calculate the frequency of the note
-	freq = base_freq * (octave_size**octave) * ratio
-	return freq
+    # calculate the note number within the octave
+    note_in_octave = (note - base_note) % notes_per_octave
+    # calculate the ratio of the note
+    ratio = scala_ratios[note_in_octave]
+    # calculate the octave of the note
+    octave = (note - base_note) // notes_per_octave
+    octave_size = scala_ratios[notes_per_octave]
+    # calculate the frequency of the note
+    freq = base_freq * (octave_size**octave) * ratio
+    return freq
 
 # function to convert number to hex
 def num_to_hex(num):
-	hex = format(num, '02x')
-	return hex
+    hex = format(num, '02x')
+    return hex
 
 """
 Frequency data format (all bytes in hex)
@@ -253,40 +257,40 @@ The next two bytes (14 bits) specify the fraction of 100 cents above the semiton
 
 # function to convert frequency to frequency data
 def hz_to_freq_data(freq):
-	# limit freq to bounds of MIDI note range
-	if freq < 8.1757989156:
-		freq = 8.1757989156
-	elif freq > 12543.853951:
-		freq = 12543.853951
-		
-	# calculate the nearest equal-tempered semitone below the frequency
-	semitone = round(12 * math.log(freq/440, 2) + 69)
-	# calculate the fraction of 100 cents above the semitone at which the frequency lies
-	cents = round(1200 * math.log(freq/440, 2) + 6900)
-	cents_fraction = cents - (semitone * 100)
-	if (cents_fraction < 0):
-		semitone = semitone - 1
-		cents_fraction = cents_fraction + 100
+    # limit freq to bounds of MIDI note range
+    if freq < 8.1757989156:
+        freq = 8.1757989156
+    elif freq > 12543.853951:
+        freq = 12543.853951
+        
+    # calculate the nearest equal-tempered semitone below the frequency
+    semitone = round(12 * math.log(freq/440, 2) + 69)
+    # calculate the fraction of 100 cents above the semitone at which the frequency lies
+    cents = round(1200 * math.log(freq/440, 2) + 6900)
+    cents_fraction = cents - (semitone * 100)
+    if (cents_fraction < 0):
+        semitone = semitone - 1
+        cents_fraction = cents_fraction + 100
 
-	# calculate the MSB of the fractional part
-	# 1 MSB = 1/128 semitone = 100/128 cents = .78125 cents
-	# msb = how many times .78125 fits into cents_fraction
-	msb = int(cents_fraction // .78125)
-	rest = cents_fraction % .78125
-	
-	# calculate the LSB of the fractional part
-	# 1 LSB = 1/16384 semitone = 100/16384 cents = .0061 cents
-	lsb = int(rest // .0061)
+    # calculate the MSB of the fractional part
+    # 1 MSB = 1/128 semitone = 100/128 cents = .78125 cents
+    # msb = how many times .78125 fits into cents_fraction
+    msb = int(cents_fraction // .78125)
+    rest = cents_fraction % .78125
+    
+    # calculate the LSB of the fractional part
+    # 1 LSB = 1/16384 semitone = 100/16384 cents = .0061 cents
+    lsb = int(rest // .0061)
 
-	semitone_hex = num_to_hex(semitone)
-	msb_hex = num_to_hex(msb)
-	lsb_hex = num_to_hex(lsb)
-	msb_hex = str(msb_hex)
-	lsb_hex = str(lsb_hex)
-	
-	# return semitone_hex, msb_hex, lsb_hex
-	return semitone_hex + " " + msb_hex + " " + lsb_hex
-	
+    semitone_hex = num_to_hex(semitone)
+    msb_hex = num_to_hex(msb)
+    lsb_hex = num_to_hex(lsb)
+    msb_hex = str(msb_hex)
+    lsb_hex = str(lsb_hex)
+    
+    # return semitone_hex, msb_hex, lsb_hex
+    return semitone_hex + " " + msb_hex + " " + lsb_hex
+    
 # --------------------------------------------------------
 
 if __name__ == '__main__':

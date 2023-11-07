@@ -99,12 +99,14 @@ with open(input_file, 'r', encoding=file_encoding) as f:
 
 # parse the Scala file
 scala_name = scala_lines[0].strip()
+
 # remove the ! and space from the name
 scala_name = scala_name[2:]
+
 # remove full path, if it exists
 if "/" in scala_name:
     scala_name = scala_name.split('/')[-1]
-print(scala_name)
+
 # remove the .scl extension
 scala_name = scala_name.replace(".scl", "")
 
