@@ -81,10 +81,10 @@ if input_file is None:
 	
 # set output file name if not specified
 if output_file is None:
-# remove file extension
+    # remove file extension
     output_file = os.path.splitext(input_file)[0]
-    output_file = output_file + ".syx"
 	# add .syx extension
+    output_file = output_file + ".syx"
 	
 
 # Open the file in binary mode to avoid decoding errors
