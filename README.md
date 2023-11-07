@@ -16,37 +16,6 @@ If you found this project useful consider [donating](https://www.paypal.com/dona
 
 ![Scala2MTS web](https://raw.githubusercontent.com/unremarkablegarden/scala2mts/main/screenshots/web-app.png)
 
-# 𝖀𝖘𝖆𝖌𝖊 (binary)
-
-![Scala2MTS](https://raw.githubusercontent.com/unremarkablegarden/scala2mts/main/screenshots/GUI%20v0.0.4.png)
-
-Currently I've only compiled the GUI version for Apple Silicon Macs. Run it from the terminal after making it executable first.
-
-First download it from Releases in the left sidebar here on GitHub.
-
-```
-cd ~/path/to/scala2mts
-chmod +x scala2mts
-./scala2mts
-```
-
-This will give you the macOS error message:
-
-`“scala2mts” can’t be opened because Apple cannot check it for malicious software.`
-
-* Open System Settings > Privacy & Security
-* Scroll down to where you see `"scala2mts" was blocked from use because it is not from an identified developer`
-* Click the button `Allow Anyway`
-* Either: In the terminal again: `./scala2mts`
-* Or: Just double-click on the executable in Finder
-
-
-# 𝖀𝖘𝖆𝖌𝖊 (compiling for Linux, Windows, etc.)
-
-You can compile it for your platform with Python by installing `pyinstaller` with `pip`, and then running:
-
-> pyinstaller --onefile scala2mts-gui.py
-
 
 # 𝖀𝖘𝖆𝖌𝖊 (command line)
 
@@ -127,3 +96,36 @@ Wrote sysex to grady-sisiutl.syx
 —
 
 🪦 *RIP https://www.microtonalsoftware.com/scl-scala-to-mts-converter.html* 🪦
+
+---
+
+# 𝖀𝖘𝖆𝖌𝖊 (binary)
+
+![Scala2MTS](https://raw.githubusercontent.com/unremarkablegarden/scala2mts/main/screenshots/GUI%20v0.0.4.png)
+
+Currently I've only compiled the GUI version for Apple Silicon Macs. Run it from the terminal after making it executable first.
+
+First download it from Releases in the left sidebar here on GitHub.
+
+```
+cd ~/path/to/scala2mts
+chmod +x scala2mts
+./scala2mts
+```
+
+This will give you the macOS error message:
+
+`“scala2mts” can’t be opened because Apple cannot check it for malicious software.`
+
+* Open System Settings > Privacy & Security
+* Scroll down to where you see `"scala2mts" was blocked from use because it is not from an identified developer`
+* Click the button `Allow Anyway`
+* Either: In the terminal again: `./scala2mts`
+* Or: Just double-click on the executable in Finder
+
+
+# 𝖀𝖘𝖆𝖌𝖊 (compiling for Linux, Windows, etc.)
+
+You can compile it for your platform with Python by installing `pyinstaller` with `pip`, and then running:
+
+> pyinstaller --onefile scala2mts-gui.py
