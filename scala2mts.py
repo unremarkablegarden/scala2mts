@@ -81,10 +81,10 @@ if input_file is None:
 	
 # set output file name if not specified
 if output_file is None:
-	# remove file extension
-	output_file = os.path.splitext(input_file)[0]
+    # remove file extension
+    output_file = os.path.splitext(input_file)[0]
 	# add .syx extension
-	output_file = output_file + ".syx"
+    output_file = output_file + ".syx"
 	
 
 # Open the file in binary mode to avoid decoding errors
@@ -101,6 +101,9 @@ with open(input_file, 'r', encoding=file_encoding) as f:
 scala_name = scala_lines[0].strip()
 # remove the ! and space from the name
 scala_name = scala_name[2:]
+# remove full path
+scala_name = scala_name.split('/')[-1]
+print(scala_name)
 # remove the .scl extension
 scala_name = scala_name.replace(".scl", "")
 
