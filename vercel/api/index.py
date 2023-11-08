@@ -8,7 +8,10 @@
 from flask import Flask, render_template, request, Response
 import io, functools, operator, math, chardet
 
-app = Flask(__name__)
+app = Flask(__name__, 
+            static_folder='./static', 
+            static_url_path=''
+        )
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -22,7 +25,6 @@ def home():
             except ValueError:
                 return "Invalid input. Please provide valid numbers."
 
-            # text = file.read().decode('utf-8')
             text = convert_to_utf8(file)
             
             output_filename = file.filename + "-p" + str(program_number) + ".syx"
@@ -35,7 +37,20 @@ def home():
         
     return render_template('upload.html')
 
+
+
 # --------------------------------------------------------
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+# --------------------------------------------------------
+@app.errorhandler(500)
+def internal_server_error(e):
+    app.logger.error(str(e))
+    error_message = str(e)
+    return render_template('500.html', error=error_message), 500
+# --------------------------------------------------------
+
 
 def stream_file(output_file, output_filename):
     def generate():
@@ -91,7 +106,7 @@ def scl_to_syx(file, program_number, base_note, base_freq):
     # notes_per_octave = the first scala_lines line that starts with a number
     notes_per_octave = 0
     for line in scala_lines:
-        if line.startswith(" "):
+        if line.startswith(" ") or line.startswith(" "):
             notes_per_octave = int(line.strip())
             break
 
@@ -294,4 +309,5 @@ def hz_to_freq_data(freq):
 # --------------------------------------------------------
 
 if __name__ == '__main__':
-    app.run()
+    # app.run()
+    app.run(debug=True)
