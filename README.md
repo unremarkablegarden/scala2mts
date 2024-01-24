@@ -105,7 +105,7 @@ Wrote sysex to grady-sisiutl.syx
 
 Currently I've only compiled the GUI version for Apple Silicon Macs. Run it from the terminal after making it executable first.
 
-First download it from Releases in the left sidebar here on GitHub.
+First download it from Releases in the right sidebar here on GitHub.
 
 ```
 cd ~/path/to/scala2mts
