@@ -23,7 +23,10 @@
 			A Python web app to convert Scala tuning files to MIDI Tuning Standard SysEx (for use with hardware synths and sequencers, like the Sequentix Cirklon and Sequential Prophet rev2).
 		</p>
 		<p>
-			Works with Scala files defined in just intonation (ratios) or in cents. Works with non-2/1 octave tunings and non-octave-repeating tunings.
+			Works with Scala files defined in just intonation (ratios) or in cents. Also works with non-2/1 octave tunings and non-octave-repeating tunings.
+		</p>
+		<p>
+			It doesn't validate Scala syntax so if you get an error when trying to convert, that is the most likely cause. Spaces in front of the intervals in your file are expected even though that's more of a convention than it is part of the specification. <a href='{{ url_for('static', filename='grady-sisiutl.scl') }}'>Example valid Scala file</a>.
 		</p>
 		
 		<form action="/" method="POST" enctype="multipart/form-data">
