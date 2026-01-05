@@ -129,3 +129,9 @@ This will give you the macOS error message:
 You can compile it for your platform with Python by installing `pyinstaller` with `pip`, and then running:
 
 > pyinstaller --onefile scala2mts-gui.py
+
+# C/C++/JUCE
+
+This is not yet properly tested, but might be a good starting point or reference for audio hardware developers who are working on implementing a Scala parser/quantiser. The C and C++ versions are ports of the Python script. The JUCE folder contains a C++ header to use in another project. Sorry if this is improperly implemented. I'm not a JUCE or C++ programmer (๏ᆺ๏υ)
+
+Find them under `./lib`
