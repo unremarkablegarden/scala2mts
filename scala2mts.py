@@ -115,32 +115,14 @@ scala_name = scala_name.replace(".scl", "")
 # scala_name = scala_name.replace("_", " ")
 
 
-# scala_description = the first scala_lines line that doesn't start with !
-scala_description = ""
-for line in scala_lines:
-    if not line.startswith("!"):
-        scala_description = line.strip()
-        break
-
-
-# get the number of notes
-# notes_per_octave = the first scala_lines line that starts with a number
-notes_per_octave = 0
-for line in scala_lines:
-    if line.startswith(" "):
-        notes_per_octave = int(line.strip())
-        break
-
-
-# notes raw data
-scala_notes = []
-for line in scala_lines:
-    if line.startswith(" "):
-        note = line.strip()
-        scala_notes.append(note)
-        
-# remove the first element, the number of notes
-scala_notes.pop(0)
+# Scala format: lines starting with ! are comments. The first other line is
+# the description (may be empty), the second is the note count, then one
+# pitch per line. Leading whitespace is optional; text after the pitch is ignored.
+# https://www.huygens-fokker.org/scala/scl_format.html
+scala_data = [line.strip() for line in scala_lines if not line.lstrip().startswith("!")]
+scala_description = scala_data[0]
+notes_per_octave = int(scala_data[1].split()[0])
+scala_notes = [line.split()[0] for line in scala_data[2:] if line][:notes_per_octave]
 
     
 # function to convert a frequency to a ratio
@@ -176,7 +158,8 @@ if "/" in scala_notes[0]:
     
 scala_cents = []
 for i in range(len(scala_notes)):
-    if "/" in scala_notes[i]:
+    # a pitch without a period is a ratio, including integers such as "2"
+    if "." not in scala_notes[i]:
         ratio = ratio_to_float(scala_notes[i])
         cents = ratio_to_cents(ratio)
         scala_cents.append(cents) 
